@@ -1,0 +1,7 @@
+class EcomAddToCart{
+
+public static void main (String args[]){
+
+System.out.println("The item is added successfully into the cart");
+}
+}
