@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>One-Page Interview Cheat Sheet</title>
+  <style>
+    :root {
+      --text: #121212;
+      --muted: #3a3a3a;
+      --border: #d9d9d9;
+    }
+    @page { size: A4; margin: 14mm; }
+    body {
+      font-family: "Calibri", "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      line-height: 1.25;
+      font-size: 12.5px;
+      margin: 0;
+      padding: 0;
+    }
+    h1 { font-size: 16px; margin: 0 0 6px 0; }
+    h2 { font-size: 13px; margin: 10px 0 4px 0; }
+    p { margin: 0 0 6px 0; color: var(--muted); }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 16px;
+    }
+    ul { margin: 0 0 6px 16px; padding: 0; }
+    li { margin: 0 0 2px 0; }
+    .flow {
+      border: 1px solid var(--border);
+      padding: 6px 8px;
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 11.5px;
+      background: #fafafa;
+    }
+    .section {
+      border-top: 1px solid var(--border);
+      padding-top: 6px;
+      margin-top: 6px;
+    }
+  </style>
+</head>
+<body>
+  <h1>One-Page Interview Cheat Sheet (Java Backend, Banking)</h1>
+  <p><strong>30s Pitch:</strong> I have 8 years in Java backend in banking. I build payment APIs on Java 21 + Spring Boot 3.2 with Oracle, MongoDB, Kafka, Docker, Kubernetes/OpenShift, and Helm. I design for idempotency, auditability, and resilience, and I operate services with Dynatrace, LogScale, and Day2Ops.</p>
+
+  <div class="section">
+    <h2>Core Flow</h2>
+    <div class="flow">Client -> Akamai -> Apigee -> OpenShift Payment API -> Kafka (request)<br/>Kafka (response) -> OpenShift Payment API -> Apigee -> Client</div>
+  </div>
+
+  <div class="section grid">
+    <div>
+      <h2>System Design Must-Say</h2>
+      <ul>
+        <li>Idempotency keys + unique constraint + TTL.</li>
+        <li>Outbox pattern to avoid dual writes.</li>
+        <li>Monotonic payment state machine.</li>
+        <li>SLIs/SLOs: P95 latency, error rate, Kafka lag.</li>
+        <li>Backpressure + DLQ + retries with jitter.</li>
+        <li>PCI/PII: tokenization, masking, least privilege.</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Coding Must-Say</h2>
+      <ul>
+        <li>Two pointers / sliding window / monotonic stack.</li>
+        <li>Heap for top-k, quickselect trade-off.</li>
+        <li>BFS/DFS/Dijkstra for graphs.</li>
+        <li>LRU via hashmap + DLL.</li>
+        <li>Two heaps for streaming median.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section grid">
+    <div>
+      <h2>Concurrency/Resilience</h2>
+      <ul>
+        <li>ConcurrentHashMap + computeIfAbsent.</li>
+        <li>Manual Kafka ack after successful processing.</li>
+        <li>Timeouts, circuit breakers, bulkheads.</li>
+      </ul>
+    </div>
+    <div>
+      <h2>One-Minute Design Template</h2>
+      <ul>
+        <li>Clarify requirements + scale.</li>
+        <li>High-level architecture.</li>
+        <li>Data model + APIs.</li>
+        <li>Consistency + reliability.</li>
+        <li>Observability + ops.</li>
+        <li>Trade-offs + evolution.</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
